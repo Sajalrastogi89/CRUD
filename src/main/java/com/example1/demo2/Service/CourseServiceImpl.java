@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class CourseServiceImpl implements CourseService{
 
-    @Autowired
-    private CourseDao courseDao;
+
+    private final CourseDao courseDao;
+
+    public CourseServiceImpl(CourseDao courseDao) {
+        this.courseDao = courseDao;
+    }
 
 
     @Override
@@ -32,5 +36,15 @@ public class CourseServiceImpl implements CourseService{
     public Course addNewCourse(Course course) {
         this.courseDao.save(course);
         return  course;
+    }
+
+    @Override
+    public Course updateExistingCourse(Course course) {
+        return this.courseDao.save(course);
+    }
+
+    @Override
+    public void delete(long id) {
+        this.courseDao.deleteById(id);
     }
 }

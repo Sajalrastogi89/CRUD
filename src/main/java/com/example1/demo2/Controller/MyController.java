@@ -3,6 +3,8 @@ package com.example1.demo2.Controller;
 
 import com.example1.demo2.Service.CourseServiceImpl;
 import com.example1.demo2.entities.Course;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,4 +39,21 @@ public class MyController {
         return this.courseService.addNewCourse(course);
     }
 
+
+    @PutMapping("/courses")
+    public Course updateCourse(@RequestBody Course course){
+        return this.courseService.updateExistingCourse(course);
+    }
+    @DeleteMapping("/courses/{courseID}")
+    public ResponseEntity<HttpStatus> deleteCourse(@PathVariable String courseID){
+        try{
+            this.courseService.delete(Long.parseLong(courseID));
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch (Exception e){
+            return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }}
+
+
 }
+
