@@ -2,18 +2,25 @@ package com.example1.demo2.Service;
 
 
 import com.example1.demo2.entities.Course;
+import com.example1.demo2.payloads.CourseDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface CourseService {
-    public List<Course> getAllCourses();
+    //get All Courses
+     List<CourseDTO> getAllCourses();
 
-    Optional<Course> getCourseById(Long courseID);
+    //Get Course by Id
 
-    Course addNewCourse(Course course);
+    CourseDTO getCourseById(Integer courseID);
 
-    Course updateExistingCourse(Course course);
+    //Create new Course
+    CourseDTO addNewCourse(CourseDTO courseDTO);
 
-    void delete(long id);
+    //Update Course
+    CourseDTO updateExistingCourse(CourseDTO courseDTO,Integer courseId);
+    //Delete a course
+
+    void delete(Integer id);
 }
